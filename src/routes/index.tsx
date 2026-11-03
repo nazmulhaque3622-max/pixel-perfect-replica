@@ -1,24 +1,41 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+/**
+ * The deliverable of this project is the standalone HTML/CSS/JS template in
+ * /public/restaurant/ (built to the client's spec: no frameworks, later
+ * converted to Laravel Blade). The app route simply forwards visitors to it.
+ */
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Ember & Oak — Premium Restaurant Self-Ordering Interface" },
+      {
+        name: "description",
+        content:
+          "Standalone HTML/CSS/JS premium restaurant self-ordering menu template, ready for Laravel Blade integration.",
+      },
+      { property: "og:title", content: "Ember & Oak — Premium Restaurant Self-Ordering Interface" },
+      {
+        property: "og:description",
+        content:
+          "Browse the menu, filter by category, and add dishes to your cart in this premium self-ordering template.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  useEffect(() => {
+    window.location.replace("/restaurant/menu.html");
+  }, []);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="flex min-h-screen items-center justify-center">
+      <p>Opening the Ember &amp; Oak ordering interface…</p>
     </div>
   );
 }

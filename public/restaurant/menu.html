@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ember &amp; Oak — Order Online</title>
+  <meta name="description" content="Browse the Ember & Oak wood-fired kitchen menu, filter by category and order in a few taps." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="site-header" id="siteHeader">
+    <div class="nav-inner">
+
+      <a class="brand" href="#" aria-label="Ember and Oak home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2c1.8 2.6 3.4 4.2 3.4 6.6 0 1.6-1 2.9-2.3 3.4.5-1.9-.3-3.6-1.7-5-.2 2.3-1.7 3.4-2.7 4.6-1 1.1-1.5 2.3-1.5 3.6C7.2 18.4 9.4 21 12.4 21c3.2 0 5.6-2.6 5.6-6.2C18 10.4 15.4 6.4 12 2z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Ember &amp; Oak</span>
+          <span class="brand-tag">Wood-Fired Kitchen</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#" class="nav-link is-active" aria-current="page">Home</a>
+        <a href="#" class="nav-link">Book a Table</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button type="button" class="btn-call-waiter" id="callWaiterBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+          </svg>
+          <span>Call Waiter</span>
+        </button>
+
+        <div class="branch-select" id="branchSelect">
+          <button type="button" class="branch-button" id="branchButton" aria-haspopup="listbox" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span id="branchLabel">Gulshan Flagship</span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <ul class="branch-menu" id="branchMenu" role="listbox" aria-label="Choose branch" hidden></ul>
+        </div>
+
+        <button type="button" class="cart-button" id="cartButton" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/><path d="M2 3h2.4l2.2 12.2a1.6 1.6 0 0 0 1.6 1.3h8.9a1.6 1.6 0 0 0 1.6-1.3L20.5 7H5.1"/>
+          </svg>
+          <span class="cart-count" id="cartCount" hidden>0</span>
+        </button>
+
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile navigation drawer -->
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile" hidden>
+      <a href="#" class="mobile-link is-active">Home</a>
+      <a href="#" class="mobile-link">Book a Table</a>
+      <a href="#" class="mobile-link">About</a>
+      <a href="#" class="mobile-link">Contact</a>
+      <button type="button" class="btn-call-waiter mobile-call" data-call-waiter>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        <span>Call Waiter</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-label="Welcome">
+      <img class="hero-media" src="assets/img/hero.jpg" alt="Ember &amp; Oak dining room with the wood-fired oven glowing in the background" width="1600" height="900" fetchpriority="high" />
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="hero-eyebrow">Wood-fired kitchen &middot; Est. 2014</p>
+        <h1 class="hero-title">Welcome to Ember &amp; Oak</h1>
+        <p class="hero-lede">Slow fires, fresh plates — every dish starts in our oak-fired oven.</p>
+        <p class="hero-promo">Order from your table today and get a free house lemonade on orders over $25.</p>
+        <div class="hero-info" role="list">
+          <span class="hero-chip" role="listitem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Open 11:00 AM – 11:00 PM
+          </span>
+          <span class="hero-chip" role="listitem">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
+            4.8 &middot; 2,400+ reviews
+          </span>
+          <span class="hero-chip" role="listitem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18h14M5 18a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2M9 22h6"/></svg>
+            Table &amp; takeaway service
+          </span>
+        </div>
+        <a href="#menu" class="hero-cta">Browse the menu
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14m7-7-7 7-7-7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ MENU ============ -->
+    <section class="menu-section" id="menu" aria-label="Menu">
+
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Our Menu</h2>
+          <p class="section-sub">Fresh from the oak fire, made to order.</p>
+        </div>
+      </div>
+
+      <!-- Category navigation -->
+      <div class="category-rail" id="categoryRail" role="tablist" aria-label="Menu categories"></div>
+
+      <!-- Search & filters -->
+      <div class="toolbar">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="search" id="searchInput" placeholder="Search dishes — try &quot;pizza&quot;" aria-label="Search the menu" autocomplete="off" />
+          <button type="button" class="search-clear" id="searchClear" aria-label="Clear search" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <label class="veg-toggle" for="vegToggle">
+          <span class="veg-toggle-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+          </span>
+          <span class="veg-toggle-text">Vegetarian only</span>
+          <span class="switch"><input type="checkbox" id="vegToggle" /><span class="switch-knob" aria-hidden="true"></span></span>
+        </label>
+
+        <div class="sort-select">
+          <label class="visually-hidden" for="sortSelect">Sort dishes</label>
+          <select id="sortSelect">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+            <option value="rating">Top rated</option>
+          </select>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+
+        <p class="results-count" id="resultsCount" role="status"></p>
+      </div>
+
+      <!-- Food cards grid -->
+      <div class="menu-grid" id="menuGrid" aria-live="polite"></div>
+
+      <!-- Empty state -->
+      <div class="empty-state" id="emptyState" hidden>
+        <div class="empty-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M8.5 11h5"/></svg>
+        </div>
+        <h3>No dishes found</h3>
+        <p>Try a different search, category or turn off the vegetarian filter.</p>
+        <button type="button" class="btn-reset" id="resetFilters">Reset filters</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p><strong>Ember &amp; Oak</strong> — Wood-Fired Kitchen</p>
+    <p>Gulshan Flagship &middot; Open daily 11:00 AM – 11:00 PM</p>
+  </footer>
+
+  <!-- ============ CART DRAWER ============ -->
+  <div class="cart-backdrop" id="cartBackdrop" hidden></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Your order" hidden>
+    <header class="cart-head">
+      <h2>Your order</h2>
+      <button type="button" class="cart-close" id="cartClose" aria-label="Close cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </header>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-empty" id="cartEmpty">
+      <p>Your cart is empty.</p>
+      <p class="cart-empty-sub">Add something delicious from the menu.</p>
+    </div>
+    <footer class="cart-foot" id="cartFoot" hidden>
+      <div class="cart-total-row">
+        <span>Total</span>
+        <strong id="cartTotal">$0.00</strong>
+      </div>
+      <button type="button" class="btn-checkout" id="checkoutBtn">Proceed to order</button>
+      <p class="cart-note">Demo action — connect to your ordering flow later.</p>
+    </footer>
+  </aside>
+
+  <!-- Toast -->
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
