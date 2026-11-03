@@ -72,6 +72,11 @@ img {
   max-width: 100%;
 }
 
+/* The hidden attribute must always win over component display rules. */
+[hidden] {
+  display: none !important;
+}
+
 button {
   font: inherit;
   color: inherit;
