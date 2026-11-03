@@ -5,7 +5,7 @@ Standalone HTML5 / CSS3 / Vanilla JavaScript template. No frameworks, no build s
 ## Files
 
 ```
-index.html          — page markup (semantic, Blade-conversion friendly)
+menu.html           — page markup (semantic, Blade-conversion friendly)
 css/styles.css      — all styles + design tokens in one file
 js/menu-data.js     — sample menu, categories and branches (demo data)
 js/app.js           — interactions: categories, search, filters, cart
