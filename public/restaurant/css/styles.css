@@ -1500,8 +1500,18 @@ h1, h2, h3, p {
   }
 
   .btn-call-waiter span,
-  .branch-button #branchLabel {
+  .branch-button #branchLabel,
+  .brand-tag {
     display: none;
+  }
+
+  .brand-name {
+    font-size: 1.1rem;
+  }
+
+  /* Inside the mobile drawer the label comes back */
+  .mobile-call span {
+    display: inline;
   }
 
   .btn-call-waiter,
