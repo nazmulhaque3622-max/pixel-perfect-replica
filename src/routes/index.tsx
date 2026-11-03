@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   useEffect(() => {
-    window.location.replace("/restaurant/index.html");
+    window.location.replace("/restaurant/menu.html");
   }, []);
 
   return (
